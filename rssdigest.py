@@ -15,8 +15,8 @@ from sendgrid.helpers.mail import *
 print(sys.argv[1])
 
 
-def get_feeds(max_age, max_feeds):
-    opml = lp.parse('feeds.opml')
+def get_feeds(feeds_file, max_age, max_feeds):
+    opml = lp.parse(feeds_file)
     feeds = opml.feeds
 
     feeds = feeds[:max_feeds]
@@ -71,6 +71,8 @@ def get_feeds(max_age, max_feeds):
     
     digesthtml = md.convert(digeststring)    
 
+    # print("Final: " + digesthtml)
+
     return digesthtml
 
 
@@ -95,8 +97,9 @@ def send_email(subject, message, from_email, to_email, apikey):
 max_age = 100
 max_feeds = 5
 email = sys.argv[1]
+feeds_file = sys.argv[2]
 SENDGRID_APIKEY = os.environ["SENDGRID_APIKEY"]
 
 
-digesthtml = get_feeds(max_age, max_feeds)
+digesthtml = get_feeds(feeds_file, max_age, max_feeds)
 send_email("Daily RSS Digest", digesthtml, email, email, SENDGRID_APIKEY)
