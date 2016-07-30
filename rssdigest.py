@@ -19,7 +19,7 @@ feeds = opml.feeds
 
 
 md = Markdown()
-filename = "/home/ray/projects/temp/rssdigest.html"
+filename = "/home/ray/rssdigest/rssdigest.html"
 with open(filename, "w") as text_file:
     text_file.write(md.convert("# Daily RSS Digest \n----"))
 
