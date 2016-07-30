@@ -4,7 +4,6 @@ import time
 from markdown import Markdown
 
 
-
 opml = lp.parse('https://dl.dropbox.com/s/m0vxh64kv18vxde/feedly4.opml')
 feeds = opml.feeds
 
