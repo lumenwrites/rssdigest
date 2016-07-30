@@ -94,8 +94,8 @@ def send_email(subject, message, from_email, to_email, apikey):
 
     
 
-max_age = 100
-max_feeds = 5
+max_age = 1
+max_feeds = 5000
 email = sys.argv[1]
 feeds_file = sys.argv[2]
 SENDGRID_APIKEY = os.environ["SENDGRID_APIKEY"]

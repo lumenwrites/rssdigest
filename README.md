@@ -11,7 +11,7 @@ sudo pip3.4 install sendgrid-python listparser feedparser
 
 ## Saving the list of feeds
 
-This script requires an OPML file that contains a list of your rss feeds.
+This script requires an OPML file that contains the list of your rss feeds.
 
 To export your RSS feeds from feedly you can click Organize, and then click on the link called "As OPML". 
 
