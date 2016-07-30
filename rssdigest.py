@@ -1,3 +1,5 @@
+import sys
+
 # For feeds
 import listparser as lp
 import feedparser
@@ -10,14 +12,17 @@ import sendgrid
 from sendgrid.helpers.mail import *
 
 
+print(sys.argv[1])
+
+
 def get_feeds(max_age, max_feeds):
-    opml = lp.parse('https://dl.dropbox.com/s/m0vxh64kv18vxde/feedly4.opml')
+    opml = lp.parse('feeds.opml')
     feeds = opml.feeds
 
     feeds = feeds[:max_feeds]
     
     md = Markdown()
-    filename = "/home/ray/rssdigest/rssdigest.html"
+    filename = "rssdigest.html"
     with open(filename, "w") as text_file:
         text_file.write(md.convert("# Daily RSS Digest \n----"))
     
@@ -89,7 +94,9 @@ def send_email(subject, message, from_email, to_email, apikey):
 
 max_age = 100
 max_feeds = 5
+email = sys.argv[1]
 SENDGRID_APIKEY = os.environ["SENDGRID_APIKEY"]
 
+
 digesthtml = get_feeds(max_age, max_feeds)
-send_email("Daily RSS Digest", digesthtml, "raymestalez@gmail.com", "raymestalez@gmail.com", SENDGRID_APIKEY)
+send_email("Daily RSS Digest", digesthtml, email, email, SENDGRID_APIKEY)
